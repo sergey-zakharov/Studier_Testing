@@ -8,6 +8,7 @@ public class LoginData {
 	private String login;
 	private String pass;
 	private String expectedResult;
+    private boolean expectedIsManager;
 	
 	public String getPass(){
 		return pass;
@@ -20,6 +21,7 @@ public class LoginData {
 	public String getExpectedResult(){
 		return expectedResult;
 	}
+    public Boolean getExpectedIsManager(){return expectedIsManager;}
 	
 	public LoginData loadLogin(String login){
 		this.login = login;
@@ -34,4 +36,9 @@ public class LoginData {
 		this.expectedResult = expected;
 		return this;
 	}
+
+    public LoginData loadExpectedIsManager(Boolean expectedIsManager){
+        this.expectedIsManager = expectedIsManager;
+        return this;
+    }
 }

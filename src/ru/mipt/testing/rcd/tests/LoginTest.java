@@ -9,6 +9,7 @@ import java.util.Iterator;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import ru.mipt.testing.rcd.fw.Pair;
 import ru.mipt.testing.rcd.testData.LoginData;
 import ru.mipt.testing.rcd.testData.LoginDataLoader;
 
@@ -22,6 +23,11 @@ public class LoginTest extends TestBase{
 
     @Test(dataProvider = "loginData")
     public void testLogin(LoginData loginData) throws Exception{
-        assertEquals(app.getLoginHelper().doLogin(loginData), loginData.getExpectedResult(), "Test login failed");
+        Pair<String, Boolean> expectedPair = new Pair<String, Boolean>(loginData.getExpectedResult(),
+                loginData.getExpectedIsManager());
+        Pair<String, Boolean> resultPair = app.getLoginHelper().doLogin(loginData);
+
+        assertEquals(resultPair.first, expectedPair.first, "Test login failed");
+        assertEquals(resultPair.second, expectedPair.second, "Test login failed");
     }
 }

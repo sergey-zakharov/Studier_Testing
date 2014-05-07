@@ -22,7 +22,8 @@ public class LoginDataLoader {
             LoginData loginData = new LoginData()
                     .loadLogin(part[0])
                     .loadPass(part[1])
-                    .loadExpectedResult(part[2]);
+                    .loadExpectedResult(part[2])
+                    .loadExpectedIsManager(part[3].compareTo("True") == 0);
             list.add(loginData);
             line = bufferedReader.readLine();
         }
